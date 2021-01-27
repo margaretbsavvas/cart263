@@ -2,10 +2,13 @@
 
 //global
 const NUM_MATCHA_IMAGES = 7;
-const NUM_MATCHAS = 100;
+const NUM_MATCHAS = 50;
 
 let matchaImages = [];
 let matchas = [];
+
+let wasabiImage = undefined;
+let wasabi = undefined;
 
 //"i" allows the program to read the image numbers
 function preload() {
@@ -13,6 +16,7 @@ function preload() {
     let matchaImage = loadImage(`assets/images/matcha${i}.png`);
     matchaImages.push(matchaImage);
   }
+    wasabiImage = loadImage(`assets/images/wasabi.png`);
 }
 
 function setup() {
@@ -26,6 +30,9 @@ function setup() {
       let matcha= new Matcha(x, y, matchaImage);
       matchas.push(matcha);
   }
+      let x =random(0, width);
+      let y = random(0,height);
+      wasabi = new Wasabi(x, y, wasabiImage);
 }
 
 //displaying the matcha icecream
@@ -36,4 +43,8 @@ function draw() {
     matchas[i]. update();
   }
 
+  wasabi.update();
 }
+  function mousePressed(){
+    wasabi.mousePressed();
+  }
