@@ -12,6 +12,11 @@ let wasabi = undefined;
 
 //adding a countdown timer to find the wasabi
 let timer = 5
+let countdown = 60
+
+//adding a title screen
+let screen = 0;
+
 
 //"i" allows the program to read the image numbers
 function preload() {
@@ -21,6 +26,7 @@ function preload() {
   }
     wasabiImage = loadImage(`assets/images/wasabi.png`);
 }
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -38,29 +44,48 @@ function setup() {
       wasabi = new Wasabi(x, y, wasabiImage);
 }
 
+
 //displaying the matcha icecream
 function draw() {
-  background(131, 181, 129);
 
+  if(screen == 0) {
+    background(131, 181, 129);
+    fill(0);
+    textAlign(CENTER);
+    textSize(100);
+    text('MATCHA VS WASABI!', width/2, height/2);
+    textSize(50);
+    text('Find the camouflaged Wasabi. You have 5 seconds! Click to start', width/2, height/1.5);
+  }
 
- //
-  for (let i = 0; i < matchas.length; i++){
+  else if (screen == 1){
+   background(131, 181, 129);
+
+   for (let i = 0; i < matchas.length; i++){
     matchas[i]. update();
-  }
+   }
 
-  wasabi.update();
+   wasabi.update();
 
-  textAlign (CENTER, CENTER);
-  textSize(100);
-  text(timer, width/2, height/2);
+   // adding in the timer and its placement
+   fill(0);
+   textAlign (CENTER, CENTER);
+   textSize(100);
+   text(timer, width/2, height/2);
 
-  if (frameCount % 60 == 0 && timer > 0) {
+   if (frameCount % countdown == 0 && timer > 0) {
     timer --;
-  }
-  if (timer == 0) {
-    text("WHY IS MY ICE CREAM BURNING ME", width/2, height*0.7);
+   }
+   if (timer == 0) {
+     text("MY NOSE BURNS", width/2, height*0.7);
+    }
   }
 }
+
   function mousePressed(){
-    wasabi.mousePressed();
+    if(screen == 0){
+      screen = 1
+    } else if (screen == 1) {
+      wasabi.mousePressed();
+    }
   }

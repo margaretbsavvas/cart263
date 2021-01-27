@@ -1,3 +1,4 @@
+
 class Wasabi extends Matcha {
   constructor(x, y, image) {
     super(x, y, image);
@@ -19,7 +20,8 @@ class Wasabi extends Matcha {
        mouseX < this.x + this.image.width/2 &&
        mouseY > this.y - this.image.height/2 &&
        mouseY < this.y + this.image.height/2) {
-       this.found = true
+       this.found = true;
+       countdown = 0;
     }
   }
 }
