@@ -1,4 +1,4 @@
-class Icecream {
+class Matcha {
   contrusctors(x, y, image){
     this.x = x;
     this.y = y;
@@ -19,5 +19,4 @@ class Icecream {
     image(this.image, 0, 0);
     pop();
   }
-
 }

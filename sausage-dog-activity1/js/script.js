@@ -1,32 +1,38 @@
 "use strict";
 
-/**
-Title of Project
-Author Name
+const NUM_MATCHA_IMAGES = 6;
+const NUM_MATCHA = 100;
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
-*/
+let matchaImages = [];
+let matcha = [];
 
-/**
-Description of preload
-*/
+//"i" allows the program to read the image numbers
 function preload() {
-
+  for (let i = 0; i < NUM_MATCHA_IMAGES; i++) {
+    let matchaImage = loadImage(`assets/images/matcha${i}.png`);
+    matchaImages.push(matchaImage);
+  }
 }
 
-
-/**
-Description of setup
-*/
 function setup() {
-
+  createCanvas(windowWidth, windowHeight);
+  //setting up the icecream
+  for (let i = 0; i <NUM_MATCHA; i++) {
+      let x= random (0,width);
+      let y= random (0,height);
+      let matchaImage = random(matchaImages);
+      let matcha= new Matcha(x, y, matchaImage);
+      matcha.push(matcha);
+  }
 }
 
-
-/**
-Description of draw()
-*/
+//displaying the matcha icecream
 function draw() {
+  background(131, 181, 129);
+
+  for (let i = 0; i < matcha.length; i++){
+    matcha = [i].upadte();
+  }
+
 
 }
