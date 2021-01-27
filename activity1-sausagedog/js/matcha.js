@@ -1,5 +1,5 @@
 class Matcha {
-  construsctor(x, y, image){
+  constructor(x, y, image){
     this.x = x;
     this.y = y;
     this.image = image;
