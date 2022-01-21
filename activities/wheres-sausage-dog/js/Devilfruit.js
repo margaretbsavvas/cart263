@@ -4,7 +4,7 @@ class Devilfruit {
     this.y = y;
     this.image = image;
     this.angle = 0;
-    this.clickSFX = clickSFX;
+
 
   }
 
@@ -31,12 +31,5 @@ class Devilfruit {
       else {
         return false;
       }
-  }
-  //baka sound when mousePressed on fruit
-  mousePressed(){
-    if (this.overlap(mouseX, mouseY)) {
-      this.x += 9;
-      this.clickSFX.play();
-    }
   }
 }
