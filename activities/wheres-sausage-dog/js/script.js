@@ -9,7 +9,7 @@ author, and this description to match your project!
 "use strict";
 //declaring global constants for number of animal images and number of animals to display
 const NUM_ANIMAL_IMAGES = 10;
-const NUM_ANIMALS = 200;
+const NUM_ANIMALS = 300;
 
 //arrays for animal images and for animal objects
 let animalImages = [];
@@ -42,7 +42,7 @@ function setup() {
   }
   //setting up sausage dog object
   let x = random(0, width);
-  let y= randome(0, height);
+  let y= random(0, height);
   sausageDog = new SausageDog(x, y, sausageDogImage);
 }
 

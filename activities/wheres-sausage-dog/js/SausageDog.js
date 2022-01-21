@@ -1,6 +1,6 @@
 //creating class for sausage dog
 class SausageDog extends Animal {
-  constructor( x, y, image); {
+  constructor( x, y, image) {
     //super constructor to pass along the parameters
     super(x, y, image);
 
@@ -18,12 +18,9 @@ class SausageDog extends Animal {
     }
   }
 
-  //adding mousepressed for when sausage dog is found 
+  //adding mousepressed for when sausage dog is found
   mousePressed(){
-    if (mouseX > this.x - this.image.width / 2 &&
-        mouseX < this.x + this.image.width / 2 &&
-        mouseY > this.y - this.image.height / 2 &&
-        mouseY < this.y + this.image.height / 2) {
+    if (this.overlap(mouseX, mouseY)) {
         this.found = true;
     }
   }
