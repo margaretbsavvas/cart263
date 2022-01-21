@@ -74,10 +74,10 @@ function draw() {
 //creatung title function
 function title() {
   background (75,192,196);
-  background (gomuImage, 0, 0);
-  textSize(50);
+  image(gomuImage, width /2, height /3);
+  textSize(100);
   text(titleString, width /2, height /8);
-  textSize(30);
+  textSize(50);
   text(enterString, width/2, height /5);
 }
 
