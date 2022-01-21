@@ -17,8 +17,8 @@ let animals= [];
 
 function preload() {
 //creating a loop to load all animal images by using the iterator
-  for (let i = 0; i <NUM_ANIMALS_IMAGES; i++){
-    let animalImage =loadImage(`assets/images/animal$${i}.png`);
+  for (let i = 0; i < NUM_ANIMALS_IMAGES; i++) {
+    let animalImage = loadImage(`assets/images/animal${i}.png`);
     animalImages.push(animalImage);
   }
 }
