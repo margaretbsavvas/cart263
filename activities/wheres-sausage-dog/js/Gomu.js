@@ -1,5 +1,5 @@
-//creating class for sausage dog
-class SausageDog extends Animal {
+//creating class for gomu
+class Gomu extends Devilfruit {
   constructor( x, y, image) {
     //super constructor to pass along the parameters
     super(x, y, image);
@@ -18,7 +18,7 @@ class SausageDog extends Animal {
     }
   }
 
-  //adding mousepressed for when sausage dog is found
+  //adding mousepressed for when gomu is found
   mousePressed(){
     if (this.overlap(mouseX, mouseY)) {
         this.found = true;

@@ -1,4 +1,4 @@
-class Animal {
+class Devilfruit {
   constructor(x, y, image) {
     this.x = x;
     this.y = y;

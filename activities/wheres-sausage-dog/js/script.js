@@ -1,5 +1,5 @@
 /**
-Where's sausage dog?
+Where's the gomu-gomu fruit?
 Margaret Beaumont-Savvas
 
 This is a template. You must fill in the title,
@@ -7,57 +7,57 @@ author, and this description to match your project!
 */
 
 "use strict";
-//declaring global constants for number of animal images and number of animals to display
-const NUM_ANIMAL_IMAGES = 10;
-const NUM_ANIMALS = 300;
+//declaring global constants for number of fruit images and number of fruits to display
+const NUM_FRUIT_IMAGES = 9;
+const NUM_FRUITS = 600;
 
-//arrays for animal images and for animal objects
-let animalImages = [];
-let animals= [];
+//arrays for fruit images and for fruits objects
+let fruitImages = [];
+let fruits= [];
 
-//variables for sausage dog
-let sausageDogImage = undefined;
-let sausageDog = undefined;
+//variables for gomuImage
+let gomuImage = undefined;
+let gomu = undefined;
 
 function preload() {
-//creating a loop to load all animal images by using the iterator
-  for (let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
-    let animalImage = loadImage(`assets/images/animal${i}.png`);
-    animalImages.push(animalImage);
+//creating a loop to load all fruit images by using the iterator
+  for (let i = 0; i < NUM_FRUIT_IMAGES; i++) {
+    let fruitImage = loadImage(`assets/images/fruit${i}.png`);
+    fruitImages.push(fruitImage);
   }
-  //loading sausage dog image
-  sausageDogImage = loadImage(`assets/images/sausage-dog.png`);
+  //loading gomu image
+  gomuImage = loadImage(`assets/images/gomu.png`);
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  //create the animal
-  for (let i = 0; i < NUM_ANIMALS; i++) {
+  //create the fruit
+  for (let i = 0; i < NUM_FRUITS; i++) {
     let x = random (0, width);
     let y = random (0, height);
-    let animalImage = random(animalImages);
-    let animal = new Animal(x, y, animalImage);
-    animals.push(animal);
+    let fruitImage = random(fruitImages);
+    let fruit = new Devilfruit(x, y, fruitImage);
+    fruits.push(fruit);
   }
-  //setting up sausage dog object
+  //setting up gomu object
   let x = random(0, width);
   let y= random(0, height);
-  sausageDog = new SausageDog(x, y, sausageDogImage);
+  gomu = new Gomu(x, y, gomuImage);
 }
 
 function draw() {
-  background(255, 255, 0);
+  background(75, 192, 196);
 //using a for loop to go through animals and call the update
-  for (let i = 0; i < animals.length; i++) {
-   animals[i].update();
+  for (let i = 0; i < fruits.length; i++) {
+   fruits[i].update();
   }
 
   //calling update for sausage dog object
-  sausageDog.update();
+  gomu.update();
 }
 
 //defining the mousePressed function and calling the mousePressed of sausage dog object
 function mousePressed() {
-  sausageDog.mousePressed();
+  gomu.mousePressed();
 }
