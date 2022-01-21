@@ -19,6 +19,10 @@ let fruits= [];
 let gomuImage = undefined;
 let gomu = undefined;
 
+//Sound for gomu fruit
+let gomugomuSFX = undefined;
+
+
 function preload() {
 //creating a loop to load all fruit images by using the iterator
   for (let i = 0; i < NUM_FRUIT_IMAGES; i++) {
@@ -27,6 +31,9 @@ function preload() {
   }
   //loading gomu image
   gomuImage = loadImage(`assets/images/gomu.png`);
+ //load gomu sound
+ gomugomuSFX = loadSound(`assets/sounds/gomu-gomu.wav`);
+
 }
 
 function setup() {
@@ -43,7 +50,7 @@ function setup() {
   //setting up gomu object
   let x = random(0, width);
   let y= random(0, height);
-  gomu = new Gomu(x, y, gomuImage);
+  gomu = new Gomu(x, y, gomuImage, gomugomuSFX);
 }
 
 function draw() {

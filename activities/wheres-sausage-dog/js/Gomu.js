@@ -18,10 +18,11 @@ class Gomu extends Devilfruit {
     }
   }
 
-  //adding mousepressed for when gomu is found
+  //adding mousePressed for when gomu is found
   mousePressed(){
     if (this.overlap(mouseX, mouseY)) {
         this.found = true;
+        gomugomuSFX.play();
     }
   }
 }
