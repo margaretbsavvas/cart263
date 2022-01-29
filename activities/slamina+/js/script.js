@@ -151,9 +151,18 @@ let currentAnswer = ``;
 
 //setting variable for background
 let farm;
+let yiayia;
+
+//variable to declare states
+let state = `title`;
+
+//variable for titlestring at title page
+let titleString = "Guess what animal YiaYia is saying backwards!"
+let enterString = "With X meaning animal, please guess animal like so: I think it is X. Press any key to begin. "
 
 function preload() {
   farm = loadImage ("assets/images/farmhouse.png");
+  yiayia = loadImage ("assets/images/yiayia.jpg");
 }
 
 //setting up annyang to listen to user guesses
@@ -175,24 +184,46 @@ function setup() {
 
 
 function draw() {
- background (farm, 0, 0, width, height);
-//function for answers. if answered correctly, text will be green
- if (currentAnswer === currentAnimal) {
-   fill(0, 153, 51);
+ //drawing states for title screen
+ if (state === `title`) {
+   title();
  }
- //if answered wrong, text will be red
- else {
-   fill(255, 0, 0);
+ else if (state === `gameOn`) {
+   gameOn();
  }
  //text in center of screen
  text(currentAnswer, width /2, height /2);
 }
 
-//definig a mousePressed() with an assigned random animal for ResponsiveVoice to speak
-function mousePressed() {
-  currentAnimal = random(animals);
-  let reverseAnimal = reverseString(currentAnimal);
-  responsiveVoice.speak(reverseAnimal , "Greek Female");
+//function for title screen
+function title() {
+  background (yiayia, 0, 0, width, height);
+  textSize(100);
+  fill(255, 204, 0);
+  text(titleString, width /2, height /9);
+  textSize(50);
+  fill(255, 204, 0);
+  text(enterString, width /2, height / 6);
+}
+
+//function to enter gameOn
+function keyPressed(){
+  if (state === `title`) {
+     state = `gameOn`;
+  }
+}
+
+//function for gameOn screen
+function gameOn() {
+  background (farm, 0, 0, width, height);
+  //function for answers. if answered correctly, text will be green
+  if (currentAnswer === currentAnimal) {
+     fill(0, 153, 51);
+   }
+   //if answered wrong, text will be red
+  else {
+     fill(255, 0, 0);
+   }
 }
 
 //defining a function to assign the guess
@@ -200,7 +231,6 @@ function guessAnimal(animal) {
   currentAnswer = animal.toLowerCase();
   console.log(currentAnimal);
 }
-
 
 //function for reversing a string in program
 function reverseString(string) {
@@ -212,4 +242,11 @@ function reverseString(string) {
   let result = reverseCharacters.join('');
   // Return the result
   return result;
+}
+
+//definig a mousePressed() with an assigned random animal for ResponsiveVoice to speak
+function mousePressed() {
+  currentAnimal = random(animals);
+  let reverseAnimal = reverseString(currentAnimal);
+  responsiveVoice.speak(reverseAnimal , "Greek Female");
 }
