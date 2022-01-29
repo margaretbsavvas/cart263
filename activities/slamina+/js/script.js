@@ -149,6 +149,9 @@ const animals = [
 let currentAnimal = ``;
 let currentAnswer = ``;
 
+//variable for wrong answers
+let wrongResponses = ["vlakas!", "ittimenos!", "oxi!"];
+
 //setting variable for background
 let farm;
 let yiayia;
@@ -206,13 +209,6 @@ function title() {
   text(enterString, width /2, height / 6);
 }
 
-//function to enter gameOn
-function keyPressed(){
-  if (state === `title`) {
-     state = `gameOn`;
-  }
-}
-
 //function for gameOn screen
 function gameOn() {
   background (farm, 0, 0, width, height);
@@ -232,6 +228,11 @@ function guessAnimal(animal) {
   console.log(currentAnimal);
 }
 
+function wrongResponse() {
+  let response = random(wrongResponses);
+  responsiveVoice.speak(response);
+}
+
 //function for reversing a string in program
 function reverseString(string) {
   // Split the string into an array of characters
@@ -242,6 +243,13 @@ function reverseString(string) {
   let result = reverseCharacters.join('');
   // Return the result
   return result;
+}
+
+//function to enter gameOn
+function keyPressed(){
+  if (state === `title`) {
+     state = `gameOn`;
+  }
 }
 
 //definig a mousePressed() with an assigned random animal for ResponsiveVoice to speak
