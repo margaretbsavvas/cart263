@@ -173,7 +173,7 @@ function draw() {
 
 //definig a mousePressed() with an assigned random animal for ResponsiveVoice to speak
 function mousePressed() {
-  cyrrentAnimal = random(animals);
+  currentAnimal = random(animals);
   let reverseAnimal = reverseString(currentAnimal);
   responsiveVoice.speak(reverseAnimal);
 }
