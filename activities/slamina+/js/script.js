@@ -149,9 +149,11 @@ const animals = [
 let currentAnimal = ``;
 let currentAnswer = ``;
 
+//setting variable for background
+let farm;
 
 function preload() {
-
+  farm = loadImage ("assets/images/farmhouse.png");
 }
 
 //setting up annyang to listen to user guesses
@@ -165,7 +167,7 @@ function setup() {
     annyang.addCommands(commands);
     annyang.start();
 //text for annyang responsing
-    textSize(32);
+    textSize(100);
     textStyle(BOLD);
     textAlign(CENTER,CENTER);
   }
@@ -173,10 +175,10 @@ function setup() {
 
 
 function draw() {
- background (0);
+ background (farm, 0, 0, width, height);
 //function for answers. if answered correctly, text will be green
  if (currentAnswer === currentAnimal) {
-   fill(0, 255, 0);
+   fill(0, 153, 51);
  }
  //if answered wrong, text will be red
  else {
@@ -190,7 +192,7 @@ function draw() {
 function mousePressed() {
   currentAnimal = random(animals);
   let reverseAnimal = reverseString(currentAnimal);
-  responsiveVoice.speak(reverseAnimal);
+  responsiveVoice.speak(reverseAnimal , "Greek Female");
 }
 
 //defining a function to assign the guess
