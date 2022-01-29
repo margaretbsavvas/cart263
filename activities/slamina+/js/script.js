@@ -228,11 +228,6 @@ function guessAnimal(animal) {
   console.log(currentAnimal);
 }
 
-function wrongResponse() {
-  let response = random(wrongResponses);
-  responsiveVoice.speak(response);
-}
-
 //function for reversing a string in program
 function reverseString(string) {
   // Split the string into an array of characters
@@ -244,6 +239,12 @@ function reverseString(string) {
   // Return the result
   return result;
 }
+
+function wrongResponse() {
+  let response = random(wrongResponses);
+  responsiveVoice.speak(response);
+}
+
 
 //function to enter gameOn
 function keyPressed(){
