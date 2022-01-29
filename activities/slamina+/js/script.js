@@ -7,6 +7,7 @@ Exercise 2 for Cart 263 using ResponsiveVoice and Annyang
 
 "use strict";
 
+//Declaring Constant for animals and copying the array from common.json
 const animals = [
       "aardvark",
       "alligator",
@@ -143,6 +144,10 @@ const animals = [
       "yak",
       "zebra"
     ];
+
+//declaring variable called currentAnimal to store the animal the user is guessing
+let currentAnimal = ``;
+
 /**
 Description of preload
 */
@@ -164,4 +169,24 @@ Description of draw()
 */
 function draw() {
 
+}
+
+//definig a mousePressed() with an assigned random animal for ResponsiveVoice to speak
+function mousePressed() {
+  cyrrentAnimal = random(animals);
+  let reverseAnimal = reverseString(currentAnimal);
+  responsiveVoice.speak(reverseAnimal);
+}
+
+
+//function for reversing a string in program
+function reverseString(string) {
+  // Split the string into an array of characters
+  let characters = string.split('');
+  // Reverse the array of characters
+  let reverseCharacters = characters.reverse();
+  // Join the array of characters back into a string
+  let result = reverseCharacters.join('');
+  // Return the result
+  return result;
 }
