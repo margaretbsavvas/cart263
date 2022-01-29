@@ -149,33 +149,41 @@ const animals = [
 let currentAnimal = ``;
 let currentAnswer = ``;
 
-/**
-Description of preload
-*/
+
 function preload() {
 
 }
 
 //setting up annyang to listen to user guesses
 function setup() {
+  createCanvas(windowWidth, windowHeight);
+
   if (annyang) {
     let commands = {
       'I think it is *animal': guessAnimal
     };
     annyang.addCommands(commands);
     annyang.start();
-
+//text for annyang responsing
     textSize(32);
     textStyle(BOLD);
     textAlign(CENTER,CENTER);
   }
 }
 
-/**
-Description of draw()
-*/
-function draw() {
 
+function draw() {
+ background (0);
+//function for answers. if answered correctly, text will be green
+ if (currentAnswer === currentAnimal) {
+   fill(0, 255, 0);
+ }
+ //if answered wrong, text will be red
+ else {
+   fill(255, 0, 0);
+ }
+ //text in center of screen
+ text(currentAnswer, width /2, height /2);
 }
 
 //definig a mousePressed() with an assigned random animal for ResponsiveVoice to speak
@@ -187,7 +195,7 @@ function mousePressed() {
 
 //defining a function to assign the guess
 function guessAnimal(animal) {
-  currentAnimal = animal;
+  currentAnswer = animal.toLowerCase();
   console.log(currentAnimal);
 }
 
