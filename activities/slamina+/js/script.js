@@ -147,6 +147,7 @@ const animals = [
 
 //declaring variable called currentAnimal to store the animal the user is guessing
 let currentAnimal = ``;
+let currentAnswer = ``;
 
 /**
 Description of preload
@@ -155,14 +156,20 @@ function preload() {
 
 }
 
-
-/**
-Description of setup
-*/
+//setting up annyang to listen to user guesses
 function setup() {
+  if (annyang) {
+    let commands = {
+      'I think it is *animal': guessAnimal
+    };
+    annyang.addCommands(commands);
+    annyang.start();
 
+    textSize(32);
+    textStyle(BOLD);
+    textAlign(CENTER,CENTER);
+  }
 }
-
 
 /**
 Description of draw()
@@ -176,6 +183,12 @@ function mousePressed() {
   currentAnimal = random(animals);
   let reverseAnimal = reverseString(currentAnimal);
   responsiveVoice.speak(reverseAnimal);
+}
+
+//defining a function to assign the guess
+function guessAnimal(animal) {
+  currentAnimal = animal;
+  console.log(currentAnimal);
 }
 
 
