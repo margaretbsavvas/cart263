@@ -79,8 +79,8 @@ let currentFlower = ``;
 let currentAnswer = ``;
 
 //setting variable for background
-let farm;
-let yiayia;
+let garden;
+let botanist;
 
 //variable to declare states
 let state = `title`;
