@@ -7,7 +7,7 @@ Exercise 2 for Cart 263 using ResponsiveVoice and Annyang
 
 "use strict";
 
-//Declaring Constant for animals and copying the array from common.json
+//Declaring Constant for flowers and copying the array from common.json
 const flowers = [
     "anemone",
     "amaryllis",
@@ -74,7 +74,7 @@ const flowers = [
     "zinnia"
   ];
 
-//declaring variable called currentAnimal to store the animal the user is guessing
+//declaring variable called currentFlower to store the animal the user is guessing
 let currentFlower = ``;
 let currentAnswer = ``;
 
@@ -178,7 +178,7 @@ function keyPressed(){
   }
 }
 
-//definig a mousePressed() with an assigned random animal for ResponsiveVoice to speak
+//definig a mousePressed() with an assigned random flower for ResponsiveVoice to speak
 function mousePressed() {
   currentFlower = random(flowers);
   let reverseFlower = reverseString(currentFlower);
