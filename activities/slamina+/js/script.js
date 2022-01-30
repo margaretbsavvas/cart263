@@ -8,149 +8,75 @@ Exercise 2 for Cart 263 using ResponsiveVoice and Annyang
 "use strict";
 
 //Declaring Constant for animals and copying the array from common.json
-const animals = [
-      "aardvark",
-      "alligator",
-      "alpaca",
-      "antelope",
-      "ape",
-      "armadillo",
-      "baboon",
-      "badger",
-      "bat",
-      "bear",
-      "beaver",
-      "bison",
-      "boar",
-      "buffalo",
-      "bull",
-      "camel",
-      "canary",
-      "capybara",
-      "cat",
-      "chameleon",
-      "cheetah",
-      "chimpanzee",
-      "chinchilla",
-      "chipmunk",
-      "cougar",
-      "cow",
-      "coyote",
-      "crocodile",
-      "crow",
-      "deer",
-      "dingo",
-      "dog",
-      "donkey",
-      "dromedary",
-      "elephant",
-      "elk",
-      "ewe",
-      "ferret",
-      "finch",
-      "fish",
-      "fox",
-      "frog",
-      "gazelle",
-      "gila monster",
-      "giraffe",
-      "gnu",
-      "goat",
-      "gopher",
-      "gorilla",
-      "grizzly bear",
-      "ground hog",
-      "guinea pig",
-      "hamster",
-      "hedgehog",
-      "hippopotamus",
-      "hog",
-      "horse",
-      "hyena",
-      "ibex",
-      "iguana",
-      "impala",
-      "jackal",
-      "jaguar",
-      "kangaroo",
-      "koala",
-      "lamb",
-      "lemur",
-      "leopard",
-      "lion",
-      "lizard",
-      "llama",
-      "lynx",
-      "mandrill",
-      "marmoset",
-      "mink",
-      "mole",
-      "mongoose",
-      "monkey",
-      "moose",
-      "mountain goat",
-      "mouse",
-      "mule",
-      "muskrat",
-      "mustang",
-      "mynah bird",
-      "newt",
-      "ocelot",
-      "opossum",
-      "orangutan",
-      "oryx",
-      "otter",
-      "ox",
-      "panda",
-      "panther",
-      "parakeet",
-      "parrot",
-      "pig",
-      "platypus",
-      "polar bear",
-      "porcupine",
-      "porpoise",
-      "prairie dog",
-      "puma",
-      "rabbit",
-      "raccoon",
-      "ram",
-      "rat",
-      "reindeer",
-      "reptile",
-      "rhinoceros",
-      "salamander",
-      "seal",
-      "sheep",
-      "shrew",
-      "silver fox",
-      "skunk",
-      "sloth",
-      "snake",
-      "squirrel",
-      "tapir",
-      "tiger",
-      "toad",
-      "turtle",
-      "walrus",
-      "warthog",
-      "weasel",
-      "whale",
-      "wildcat",
-      "wolf",
-      "wolverine",
-      "wombat",
-      "woodchuck",
-      "yak",
-      "zebra"
-    ];
+const flowers = [
+    "anemone",
+    "amaryllis",
+    "amaranth",
+    "aster",
+    "azalea",
+    "babys breath",
+    "begonia",
+    "bellflower",
+    "bergamot",
+    "bird of paradise",
+    "bluebell",
+    "bottlebrush",
+    "buttercup",
+    "camellias",
+    "carnation",
+    "chrysantemum",
+    "columbine",
+    "clover",
+    "crocus",
+    "daisy",
+    "dahlia",
+    "daffodil",
+    "delphinium",
+    "edelweiss",
+    "primrose",
+    "forget me not",
+    "foxglove",
+    "freesia",
+    "gerbera daisy",
+    "gladiolus",
+    "hibiscus",
+    "heather",
+    "hyacinth",
+    "holly",
+    "iris",
+    "jasmine",
+    "ladys slipper",
+    "lavender",
+    "lilac",
+    "lily",
+    "lotus flower",
+    "marigold",
+    "marjoram",
+    "mimosa",
+    "narcissus",
+    "orange blossom",
+    "orchid",
+    "peach blossom",
+    "peony",
+    "petunia",
+    "rhododendron",
+    "rosemary",
+    "roses",
+    "sage",
+    "snapdragon",
+    "sunflower",
+    "tansy",
+    "thistle",
+    "thyme",
+    "tulip",
+    "violet",
+    "water lily",
+    "zinnia"
+  ];
 
 //declaring variable called currentAnimal to store the animal the user is guessing
-let currentAnimal = ``;
+let currentFlower = ``;
 let currentAnswer = ``;
-
-//variable for wrong answers
-let wrongResponses = ["vlakas!", "ittimenos!", "oxi!"];
 
 //setting variable for background
 let farm;
@@ -160,12 +86,12 @@ let yiayia;
 let state = `title`;
 
 //variable for titlestring at title page
-let titleString = "Guess what animal YiaYia is saying backwards!"
-let enterString = "With X meaning animal, please guess animal like so: I think it is X. Press any key to begin. "
+let titleString = "Guess what flower the botanist is saying backwards!"
+let enterString = "With X as flower, please guess flower like so: I think it is X. Press any key to begin. "
 
 function preload() {
-  farm = loadImage ("assets/images/farmhouse.png");
-  yiayia = loadImage ("assets/images/yiayia.jpg");
+  garden = loadImage ("assets/images/garden.jpg");
+  botanist = loadImage ("assets/images/botanist.jpg");
 }
 
 //setting up annyang to listen to user guesses
@@ -174,7 +100,7 @@ function setup() {
 
   if (annyang) {
     let commands = {
-      'I think it is *animal': guessAnimal
+      'I think it is *flower': guessFlower
     };
     annyang.addCommands(commands);
     annyang.start();
@@ -200,7 +126,7 @@ function draw() {
 
 //function for title screen
 function title() {
-  background (yiayia, 0, 0, width, height);
+  background (garden, 0, 0, width, height);
   textSize(100);
   fill(255, 204, 0);
   text(titleString, width /2, height /9);
@@ -211,9 +137,9 @@ function title() {
 
 //function for gameOn screen
 function gameOn() {
-  background (farm, 0, 0, width, height);
+  background (garden, 0, 0, width, height);
   //function for answers. if answered correctly, text will be green
-  if (currentAnswer === currentAnimal) {
+  if (currentAnswer === currentFlower) {
      fill(0, 153, 51);
    }
    //if answered wrong, text will be red
@@ -223,9 +149,9 @@ function gameOn() {
 }
 
 //defining a function to assign the guess
-function guessAnimal(animal) {
-  currentAnswer = animal.toLowerCase();
-  console.log(currentAnimal);
+function guessFlower(flower) {
+  currentAnswer = flower.toLowerCase();
+  console.log(currentFlower);
 }
 
 //function for reversing a string in program
@@ -240,12 +166,6 @@ function reverseString(string) {
   return result;
 }
 
-function wrongResponse() {
-  let response = random(wrongResponses);
-  responsiveVoice.speak(response);
-}
-
-
 //function to enter gameOn
 function keyPressed(){
   if (state === `title`) {
@@ -255,7 +175,7 @@ function keyPressed(){
 
 //definig a mousePressed() with an assigned random animal for ResponsiveVoice to speak
 function mousePressed() {
-  currentAnimal = random(animals);
-  let reverseAnimal = reverseString(currentAnimal);
-  responsiveVoice.speak(reverseAnimal , "Greek Female");
+  currentFlower = random(flowers);
+  let reverseFlower = reverseString(currentFlower);
+  responsiveVoice.speak(reverseFlower , "Australian Female");
 }
