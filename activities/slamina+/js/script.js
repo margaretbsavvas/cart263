@@ -87,7 +87,7 @@ let state = `title`;
 
 //variable for titlestring at title page
 let titleString = "Guess what flower the botanist is saying backwards!"
-let enterString = "Please say 'I think it is' before your guess. "
+let enterString = "Please say 'I think it is' before your guess. Press any key to begin."
 let hintString = "Open console to verify flower."
 
 function preload() {
