@@ -88,10 +88,11 @@ let state = `title`;
 //variable for titlestring at title page
 let titleString = "Guess what flower the botanist is saying backwards!"
 let enterString = "With X as flower, please guess flower like so: I think it is X. Press any key to begin. "
+let hintString = "Open console to verify flower."
 
 function preload() {
   garden = loadImage ("assets/images/garden.jpg");
-  botanist = loadImage ("assets/images/botanist.jpg");
+  botanist = loadImage ("assets/images/botanist.png");
 }
 
 //setting up annyang to listen to user guesses
@@ -127,12 +128,16 @@ function draw() {
 //function for title screen
 function title() {
   background (garden, 0, 0, width, height);
-  textSize(100);
-  fill(255, 204, 0);
-  text(titleString, width /2, height /9);
-  textSize(50);
-  fill(255, 204, 0);
-  text(enterString, width /2, height / 6);
+  textSize(55);
+  fill(67, 31, 115);
+  text(titleString, width /2, height /3);
+  textSize(30);
+  fill(67, 31, 115);
+  text(enterString, width /2, height /2);
+  textSize(20);
+  fill(67, 31, 115);
+  text(hintString, width /2, height /1.80);
+  image(botanist, width /1.5, height /1.80);
 }
 
 //function for gameOn screen
@@ -177,5 +182,5 @@ function keyPressed(){
 function mousePressed() {
   currentFlower = random(flowers);
   let reverseFlower = reverseString(currentFlower);
-  responsiveVoice.speak(reverseFlower , "Australian Male");
+  responsiveVoice.speak(reverseFlower , "Australian Female");
 }
