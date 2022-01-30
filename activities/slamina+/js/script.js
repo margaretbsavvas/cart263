@@ -177,5 +177,5 @@ function keyPressed(){
 function mousePressed() {
   currentFlower = random(flowers);
   let reverseFlower = reverseString(currentFlower);
-  responsiveVoice.speak(reverseFlower , "Australian Female");
+  responsiveVoice.speak(reverseFlower , "Australian Male");
 }
