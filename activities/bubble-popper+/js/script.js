@@ -40,7 +40,7 @@ function setup() {
   });
 
   //listen for predictions
-  handpose.on(`predict`, fucntion(results) {
+  handpose.on(`predict`, function(results) {
     console.log(results);
     predictions = results;
   });
@@ -48,10 +48,25 @@ function setup() {
 }
 
 
-
-/**
-Description of draw()
-*/
 function draw() {
+  background(0);
 
+  if (predictions.length > 0) {
+    let hand = predictions[0];
+    let index = hand.annotations.indexFinger;
+    let tip = index[3];
+    let base = index [0];
+    let tipX = tip[0];
+    let tipY = tip[1];
+    let baseX = [0];
+    let baseY = [1];
+    push();
+    nofill();
+    stroke(255, 255, 255);
+    strokeWeight(2);
+    line(baseX, baseY, tipX, tipY);
+    pop();
+
+
+  }
 }
