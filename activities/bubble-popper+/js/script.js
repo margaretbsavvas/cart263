@@ -59,6 +59,7 @@ function setup() {
 
 function draw() {
   background(0);
+
 // detecting index finger from base to tip
   if (predictions.length > 0) {
     let hand = predictions[0];
@@ -69,6 +70,7 @@ function draw() {
     let tipY = tip[1];
     let baseX = [0];
     let baseY = [1];
+
     //drawing the pin body
     push();
     noFill();
@@ -76,12 +78,20 @@ function draw() {
     strokeWeight(2);
     line(baseX, baseY, tipX, tipY);
     pop();
+
   // drawing red circle at pin head
     push();
     noStroke();
     fill(255, 0, 0);
     ellipse(baseX, baseY, 20);
     pop();
+
+    //check bubble pop
+    let d = dist(tipX, tipY, bubble.x, bubble.y);
+    if (d < bubble.size /2) {
+      bubble.x = random(width);
+      bubble.y = height;
+    }
   }
 
   //move the bubble
