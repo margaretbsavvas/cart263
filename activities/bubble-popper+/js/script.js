@@ -17,7 +17,7 @@ let handpose = undefined;
 let predictions = [];
 
 // the bubbles
-let bubbble = undefined;
+let bubble = undefined;
 
 
 function preload() {
@@ -52,7 +52,7 @@ function setup() {
     y: height,
     size: 100,
     vx: 0,
-    vy: -2;
+    vy: -2,
   }
 }
 
