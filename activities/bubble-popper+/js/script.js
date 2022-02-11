@@ -61,7 +61,7 @@ function draw() {
     let baseX = [0];
     let baseY = [1];
     push();
-    nofill();
+    noFill();
     stroke(255, 255, 255);
     strokeWeight(2);
     line(baseX, baseY, tipX, tipY);
