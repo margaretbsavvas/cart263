@@ -16,9 +16,10 @@ let handpose = undefined;
 //current set of predictions
 let predictions = [];
 
-/**
-Description of preload
-*/
+// the bubbles
+let bubbble = undefined;
+
+
 function preload() {
 
 }
@@ -45,6 +46,14 @@ function setup() {
     predictions = results;
   });
 
+  //drawing the bubble and its movement
+  bubble = {
+    x: random(width),
+    y: height,
+    size: 100,
+    vx: 0,
+    vy: -2;
+  }
 }
 
 
@@ -60,20 +69,34 @@ function draw() {
     let tipY = tip[1];
     let baseX = [0];
     let baseY = [1];
-    //drawing the pin
+    //drawing the pin body
     push();
     noFill();
     stroke(255, 255, 255);
     strokeWeight(2);
     line(baseX, baseY, tipX, tipY);
     pop();
-  // drawing red circle at pin base
+  // drawing red circle at pin head
     push();
     noStroke();
     fill(255, 0, 0);
     ellipse(baseX, baseY, 20);
     pop();
-
-
   }
+
+  //move the bubble
+  bubble.x += bubble.vx;
+  bubble.y += bubble.vy;
+
+  if (bubble.y < 0) {
+    bubble.x = random(width);
+    bubble.y = height;
+  }
+
+//drawing the actual bubble
+push();
+fill(0,100,200);
+noStroke();
+ellipse(bubble.x, bubble.y, bubble.size);
+pop();
 }
