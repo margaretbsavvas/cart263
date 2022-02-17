@@ -65,11 +65,11 @@ function draw() {
     let hand = predictions[0];
     let index = hand.annotations.indexFinger;
     let tip = index[3];
-    let base = index [0];
+    let base = index[0];
     let tipX = tip[0];
     let tipY = tip[1];
-    let baseX = [0];
-    let baseY = [1];
+    let baseX = base[0];
+    let baseY = base[1];
 
     //drawing the pin body
     push();
