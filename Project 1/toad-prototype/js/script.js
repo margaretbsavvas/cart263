@@ -1,12 +1,15 @@
-//Prototype for toad game
+//toad game
+//https://anti.hackclub.com/workshops/dodge/#part-ii-the-external-js-file
 
 "use strict";
 
 //declaring variable for ofelia's sprite
 let ofeliaThrow = undefined;
+let ofeliaThrowImage = undefined;
 
 //declaring variables for inspect
 let insect = undefined;
+let insectImage = undefined;
 
 //declaring variable for gameOver background
 let tree = undefined;
@@ -15,12 +18,11 @@ let tree = undefined;
 let gotHit = undefined;
 
 
-
 function preload() {
   //loading ofelia's gif
-  ofeliaThrow = loadImage("assets/sprites/ofelia-throw.gif");
+  ofeliaThrowImage = loadImage("assets/sprites/ofelia-throw.gif");
   //loading insect gif
-  insect = loadImage("assets/sprites/insect.gif")
+  insectImage = loadImage("assets/sprites/insect.gif")
   //load gameOver background
   tree = loadImage("assets/images/tree.png")
 }// end of preload
@@ -32,8 +34,10 @@ function setup() {
 
   createCanvas (640, 480);
   //creating ofelia's sprite
-  ofeliaThrow = createSprite(width, height/2, 50, 50);
-  insect = createSprite(width/2, 0, 10, 30);
+  ofeliaThrow = createSprite(width, height/2, 0, 0);
+  ofeliaThrow.addImage(ofeliaThrowImage);
+  insect = createSprite(width/2, 0, 0, 0);
+  insect.addImage(insectImage);
 }//end of setup
 
 
@@ -53,11 +57,11 @@ if (insect.overlap(ofeliaThrow)) {
  //ofelia's position and speed
  //adding movement to ofeliaThrow with the up and down arrow keys
  if (keyDown(UP_ARROW) && ofeliaThrow.position.y < height) {
-   ofeliaThrow.position.y = ofeliaThrow.position.y + 1;
+   ofeliaThrow.position.y = ofeliaThrow.position.y - 1;
  }
 
  if (keyDown(DOWN_ARROW) && ofeliaThrow.position.y > 0) {
-   ofeliaThrow.position.y = ofeliaThrow.position.y - 1;
+   ofeliaThrow.position.y = ofeliaThrow.position.y + 1;
  }
 
  //position of insect and speed
@@ -74,7 +78,7 @@ if (insect.overlap(ofeliaThrow)) {
 }//end of draw
 
 function gameOver() {
-  background(tree, 0, 0, width, height);
+  background(tree, 0, 0);
   textAlign(CENTER);
   fill("white");
   text("Game Over!", width/2, height/2);
@@ -83,10 +87,10 @@ function gameOver() {
 
 //mouseClicked function to restart
 function mouseClicked() {
-    if (gothit) {
+    if (gotHit) {
       gotHit = false;
       ofeliaThrow.position.y = height /2;
-      ofeliaThrow.position.x = width-25;
+      ofeliaThrow.position.x = width;
       insect.position.y = height /2;
       insect.position.x = 0;
     }

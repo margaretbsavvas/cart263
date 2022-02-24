@@ -1,9 +1,5 @@
-/**
-Bubble Popper +
-Margaret Beaumont-Savvas
 
-Popping bubbles with your index finger as a pin!
-*/
+//Chest game
 
 "use strict";
 
@@ -21,13 +17,16 @@ let bubbleOne = undefined;
 let bubbleTwo = undefined;
 let bubbleThree= undefined;
 
+//flipping the webcam
 let mirrordex = 0;
 let tipY = 0;
 let tipX = 0;
 
-let correctState = 0; 
+//states for winning
+let correctState = 0;
 let correctImage = undefined;
 
+//states for losing
 let incorrectState = 0;
 let incorrectImage = undefined;
 
@@ -58,12 +57,14 @@ function setup() {
     predictions = results;
   });
 
-  //drawing the bubbles on the canvas
+  //position of the 3 bubbles on the canvas
   bubbleOne = {
     x: 100,
     y: 100,
     size: 100,
   }
+
+  //position
   correctImage = {
     x: 100,
     y: 100,
@@ -112,7 +113,7 @@ checkIncorrectCollision();
 
 
 
-  
+
 
 
 //drawing the actual bubbles
@@ -177,13 +178,13 @@ else {
 function checkCorrectCollision () {
   let d = dist(bubbleOne.x, bubbleOne.y, mirrordex, tipY);
   if (d < 30 ) {
-    correctState = 1; 
+    correctState = 1;
   }
 }
 
 function checkIncorrectCollision () {
   let d = dist(bubbleTwo.x, bubbleTwo.y, mirrordex, tipY);
   if (d < 30 ) {
-    incorrectState = 1; 
+    incorrectState = 1;
     }
 }
