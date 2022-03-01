@@ -13,7 +13,7 @@ let handpose = undefined;
 let predictions = [];
 
 // the bubbles
-let bubbleOne = undefined;
+let woodChest = undefined;
 let bubbleTwo = undefined;
 let bubbleThree= undefined;
 
@@ -33,6 +33,7 @@ let incorrectImage = undefined;
 let gameState = "play"
 
 function preload() {
+  woodChest = loadImage ("assets/images/chest-wood.png")
 
 }
 
@@ -58,7 +59,7 @@ function setup() {
   });
 
   //position of the 3 bubbles on the canvas
-  bubbleOne = {
+  woodChest = {
     x: 100,
     y: 100,
     size: 100,
@@ -112,15 +113,9 @@ checkIncorrectCollision();
   }
 
 
-
-
-
-
 //drawing the actual bubbles
 push();
-fill(0,100,200);
-noStroke();
-ellipse(bubbleOne.x, bubbleOne.y, bubbleOne.size);
+woodChest(woodChest.x, woodChest.y, woodChest.size);
 pop();
 
 
@@ -151,7 +146,7 @@ push();
     push ();
     fill (0, 255, 0);
     rectMode (CENTER);
-    rect(bubbleOne.x, bubbleOne.y, correctImage.size, correctImage.size);
+    rect(woodChest.x, woodChest.y, woodChest.size, correctImage.size);
     pop();
   }
 
@@ -180,11 +175,11 @@ function checkCorrectCollision () {
   if (d < 30 ) {
     correctState = 1;
   }
-}
+}// end checkCorrectCollision
 
 function checkIncorrectCollision () {
   let d = dist(bubbleTwo.x, bubbleTwo.y, mirrordex, tipY);
   if (d < 30 ) {
     incorrectState = 1;
     }
-}
+}// end checkIncorrectCollision
