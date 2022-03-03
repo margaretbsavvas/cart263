@@ -17,6 +17,8 @@ let insectImage = undefined;
 //variables for toad
 let toad = undefined;
 let toadImage = undefined;
+//variable for toadGame background
+let tunnel = undefined;
 
 //setting up an array for 3 stones
 let stones = [];
@@ -118,6 +120,12 @@ let chestState = "chestPlay";
 //declaring variable for gameOver and title background
 let tree = undefined;
 
+//variable for pan
+let pan = undefined;
+
+//variable for ofelia's back
+let ofeliaBack = undefined;
+
 function preload() {
   //preload for toad game
   ofeliaThrowImage = loadImage("assets/sprites/ofelia-throw.gif");
@@ -138,6 +146,11 @@ function preload() {
   //preload for backgrounds
   tree = loadImage("assets/images/tree.png");
   feast = loadImage("assets/images/feast.png");
+  tunnel = loadImage("assets/images/tunnel.png");
+
+  //preload for pan and ofelia images
+  pan = loadImage("assets/sprites/pan.gif");
+  ofeliaBack = loadImage("assets/images/ofelia-back.png");
 } // end of preload
 
 function setup() {
@@ -235,10 +248,76 @@ function draw() {
       //listen for predictions of ml5
       handpose.on(`predict`, getPredictionResults);
     } else if (gameState === "title") {
-      //title screen with instructions for games
-      background(0);
-      fill(255);
-      text("title", width / 2, height / 2);
+      //title screen with instructions for 3 tasks
+      background(tree, 0, 0);
+      fill(1, 126, 130);
+      textSize(60);
+      textStyle(BOLD);
+      textAlign(CENTER);
+      text("OFELIA'S 3 TASKS", width / 2, height / 8);
+      fill(153, 153, 153);
+      textSize(20);
+      textStyle(ITALIC);
+      text(
+        "ENTERING THE EVERLASTING KINGDOM.",
+        width / 2,
+        height / 5.5
+      );
+      //toadGame instructions
+      fill(227, 183, 123);
+      textSize(15);
+      textStyle(BOLD);
+      text(
+        "Task 1: Shoot 3 magic stones at the toad to retrieve a key.",
+        width / 2,
+        height / 3.5
+      );
+      textStyle(ITALIC);
+      text(
+        "If you run out of magic stones, self sacrifice yourself to begin again.",
+        width / 2,
+        height / 2.75
+      );
+      text(
+        "Use the up and down arrow keys to move Ofelia and the space bar to shoot.",
+        width / 2,
+        height / 3
+      );
+      //chestGame instructions
+      fill(227, 183, 123);
+      textSize(15);
+      textStyle(BOLD);
+      text(
+        "Task 2: Use the key to unlock the correct chest and obtain the dagger.",
+        width / 2,
+        height / 2.3
+      );
+      textStyle(ITALIC);
+      text(
+        "Use camera and move hand over chosen chest.",
+        width / 2,
+        height / 2.1
+      );
+      //sacrificeGame instructions
+      fill(227, 183, 123);
+      textSize(15);
+      textStyle(BOLD);
+      text(
+        "Task 3: Use the dagger to sacrifice your baby brother.",
+        width / 2,
+        height / 1.75
+      );
+      textStyle(ITALIC);
+      text(
+        "Do it else you will never enter the kingdom.",
+        width / 2,
+        height / 1.6
+      );
+      textStyle(BOLD);
+      text("Click anywhere to begin.", width / 1.35, height / 1.2);
+      //display pan who is telling you these rules and ofelia entering the challenge
+      image(pan, width / 25, height / 1.7, 200, 200);
+      image(ofeliaBack, width / 2, height / 1.5, 70, 70);
 
       //beginning of toadGame
     } else if (gameState === "toadGame") {
@@ -255,11 +334,11 @@ function draw() {
           console.log("hit"); //console.log for testing purposes
         }
         //background for toadGame
-        background(0);
+        background(tunnel, 0, 0);
         //ofelia's position and speed
         //adding movement to ofeliaThrow on the y axis with the up keys
         if (keyDown(UP_ARROW) && ofeliaThrow.position.y > 0) {
-          ofeliaThrow.position.y = ofeliaThrow.position.y - 3;
+          ofeliaThrow.position.y = ofeliaThrow.position.y - 5;
           // go through each stone and update to ofelias new position
           for (let i = 0; i < 3; i++) {
             //if the stone is not moving then set it
@@ -390,7 +469,6 @@ function draw() {
               dagger.size
             );
             pop();
-
           } else {
             console.log("next state"); //here for testing purposes because of lag
             //when correct chest found, transitions to sacrificeGame
@@ -402,7 +480,7 @@ function draw() {
         //when incorrect chest is selected, monster appears and you die
         if (chestIncorrectState === 1) {
           if (monster.size < width) {
-            monster.size = monster.size + 100;
+            monster.size = monster.size + 50;
           } else {
             //when you die, chestgame restarts
             miniGameRestart = true;
@@ -411,7 +489,7 @@ function draw() {
           push();
           image(
             monster.image,
-            width / 2,
+            width / 3,
             height / 2,
             monster.size,
             monster.size
@@ -419,7 +497,6 @@ function draw() {
           pop();
         }
       } //end play state of chestGame
-
     } // end of chestGame
     // transtions into sacrificeGame once chestGame is won
     else if (gameState === "sacrificeGame") {
@@ -460,10 +537,15 @@ function checkIncorrectCollision() {
 //gameOver screen
 function gameOver() {
   background(tree, 0, 0);
+  fill(138, 0, 0);
   textAlign(CENTER);
-  fill("white");
+  textSize(100);
+  textStyle(BOLD);
   text("Game Over!", width / 2, height / 2);
-  text("Click anywhere to try again.", width / 2, (3 * height) / 4);
+  textSize(30);
+  textStyle(ITALIC);
+  text("Click anywhere to try again.", width / 2, (3 * height) / 3.5);
+  image(ofeliaBack, width / 2.15, height / 1.75, 70, 70);
 } // end of gameOver
 
 function winScreen() {
