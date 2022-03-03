@@ -18,7 +18,6 @@ let insectImage = undefined;
 let toad = undefined;
 let toadImage = undefined;
 
-
 //setting up an array for 3 stones
 let stones = [];
 let stonesActive = [0, 0, 0];
@@ -54,9 +53,6 @@ let monster = undefined;
 let dagger = undefined;
 //key variable
 let key = undefined;
-
-let killButton = undefined;
-
 
 //position of the 3 chests on the canvas
 woodChest = {
@@ -102,7 +98,6 @@ key = {
   image: undefined,
 };
 
-
 //flipping the webcam
 let mirrordex = 0;
 let tipY = 0;
@@ -122,6 +117,7 @@ let feast = 0;
 let tomb = 0;
 let tree = 0;
 let tunnel = 0;
+let kingdom = 0;
 
 //variable for pan
 let pan = undefined;
@@ -129,7 +125,6 @@ let pan = undefined;
 //variable for ofelia's characters
 let ofeliaBack = undefined;
 let ofeliaBaby = undefined;
-
 
 function preload() {
   //preload for toad game
@@ -152,7 +147,8 @@ function preload() {
   tree = loadImage("assets/images/tree.png");
   feast = loadImage("assets/images/feast.png");
   tunnel = loadImage("assets/images/tunnel.png");
-  tomb = loadImage("assets/images/tomb.png")
+  tomb = loadImage("assets/images/tomb.png");
+  kingdom = loadImage("assets/images/kingdom.png");
 
   //preload for pan and ofelia images
   pan = loadImage("assets/sprites/pan.gif");
@@ -185,8 +181,6 @@ function setup() {
   toad = createSprite(width - 60, height / 2, 200, 200);
   toadImage.resize(200, 200);
   toad.addImage(toadImage);
-
-
 } //end of setup
 
 //starting with title state, once mousecPressed, then enter toadGame
@@ -263,12 +257,13 @@ function draw() {
       textSize(60);
       textStyle(BOLD);
       textAlign(CENTER);
-      text("OFELIA'S 3 TASKS", width / 2, height / 8);
+      text("PAN'S 3 TASKS", width / 2, height / 8);
       fill(153, 153, 153);
       textSize(20);
       textStyle(ITALIC);
       text(
         "ENTERING THE EVERLASTING KINGDOM.",
+
         width / 2,
         height / 5.5
       );
@@ -507,6 +502,7 @@ function draw() {
         }
       } //end play state of chestGame
     } // end of chestGame
+
     // transtions into sacrificeGame once chestGame is won
     else if (gameState === "sacrificeGame") {
       background(tomb, 0, 0);
@@ -515,23 +511,35 @@ function draw() {
       textStyle(BOLD);
       textAlign(CENTER);
       text("You must sacrifice your brother!", width / 2, height / 4);
+      text("Click to stab him with the dagger!", width / 2, height / 3);
       //both characters on screen
       image(pan, width / 25, height / 1.8, 200, 200);
       image(ofeliaBaby, width / 1.75, height / 1.7, 200, 200);
-      //variable for alert
-      let button = createButton("Stab him!");
-      //alert for sacrificeGame
-      button.mousePressed(clickMe);
-
     } //end sacrifice game
-
-    // else if(gameState === "kingdomWin") {
-    //   background(0);
-    //   fill(255);
-    //   text("win", width/2, height/2);
-    // }
-  } //if not in restart screen
+  }
 } //end of draw
+
+//when mousePressed to stab baby, then kingdomWin state
+function mousePressed() {
+  if (gameState === "sacrificeGame") {
+    gameState = "kingdomWin";
+  }
+  if (gameState === "kingdomWin") {
+    background(kingdom, 0, 0);
+    fill(227, 183, 123);
+    textSize(20);
+    textStyle(BOLD);
+    textAlign(CENTER);
+    text("You have chosen to go with your heart!", width / 2, height / 3);
+    text(
+      "For this, I grant you immortality and your kingdom.",
+      width / 2,
+      height / 2
+    );
+    image(pan, width / 25, height / 1.8, 200, 200);
+    image(ofeliaBack, width / 2, height / 1.7, 200, 200);
+  }
+} //end mousePressed
 
 //functions for chestGame: chestIncorrectCollision and checkCorrectCollision
 function checkCorrectCollision() {
@@ -555,10 +563,6 @@ function checkIncorrectCollision() {
   }
 } // end checkIncorrectCollision
 
-function clickMe(){
-  window.alert ("Ofelia can not sacrifice her brother! She stabs herself instead.");
-}
-
 //gameOver screen
 function gameOver() {
   background(tree, 0, 0);
@@ -572,3 +576,4 @@ function gameOver() {
   text("Press ENTER to try again.", width / 2, (3 * height) / 3.5);
   image(ofeliaBack, width / 2.15, height / 1.75, 70, 70);
 } // end of gameOver
+//end
