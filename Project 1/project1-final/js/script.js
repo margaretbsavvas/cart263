@@ -1,5 +1,5 @@
-//toad game
-//https://anti.hackclub.com/workshops/dodge/#part-ii-the-external-js-file
+//Project 1 final
+//PAN'S THREE TASKS by Margaret Beaumont-Savvas
 
 "use strict";
 
