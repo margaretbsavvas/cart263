@@ -17,8 +17,7 @@ let insectImage = undefined;
 //variables for toad
 let toad = undefined;
 let toadImage = undefined;
-//variable for toadGame background
-let tunnel = undefined;
+
 
 //setting up an array for 3 stones
 let stones = [];
@@ -55,6 +54,9 @@ let monster = undefined;
 let dagger = undefined;
 //key variable
 let key = undefined;
+
+let killButton = undefined;
+
 
 //position of the 3 chests on the canvas
 woodChest = {
@@ -100,8 +102,6 @@ key = {
   image: undefined,
 };
 
-//background variables
-let feast = 0;
 
 //flipping the webcam
 let mirrordex = 0;
@@ -117,14 +117,19 @@ let chestIncorrectState = 0;
 let chestState = "chestPlay";
 //end of chest variables
 
-//declaring variable for gameOver and title background
-let tree = undefined;
+//background variables
+let feast = 0;
+let tomb = 0;
+let tree = 0;
+let tunnel = 0;
 
 //variable for pan
 let pan = undefined;
 
-//variable for ofelia's back
+//variable for ofelia's characters
 let ofeliaBack = undefined;
+let ofeliaBaby = undefined;
+
 
 function preload() {
   //preload for toad game
@@ -147,10 +152,12 @@ function preload() {
   tree = loadImage("assets/images/tree.png");
   feast = loadImage("assets/images/feast.png");
   tunnel = loadImage("assets/images/tunnel.png");
+  tomb = loadImage("assets/images/tomb.png")
 
   //preload for pan and ofelia images
   pan = loadImage("assets/sprites/pan.gif");
   ofeliaBack = loadImage("assets/images/ofelia-back.png");
+  ofeliaBaby = loadImage("assets/sprites/ofelia-baby.gif");
 } // end of preload
 
 function setup() {
@@ -178,10 +185,12 @@ function setup() {
   toad = createSprite(width - 60, height / 2, 200, 200);
   toadImage.resize(200, 200);
   toad.addImage(toadImage);
+
+
 } //end of setup
 
 //starting with title state, once mousecPressed, then enter toadGame
-function mousePressed() {
+function keyPressed() {
   if (gameState === "title") {
     gameState = "toadGame";
   }
@@ -314,7 +323,7 @@ function draw() {
         height / 1.6
       );
       textStyle(BOLD);
-      text("Click anywhere to begin.", width / 1.35, height / 1.2);
+      text("Press ENTER to begin.", width / 1.35, height / 1.2);
       //display pan who is telling you these rules and ofelia entering the challenge
       image(pan, width / 25, height / 1.7, 200, 200);
       image(ofeliaBack, width / 2, height / 1.5, 70, 70);
@@ -459,12 +468,12 @@ function draw() {
         //if user selects correct chest, then dagger appears and grows
         if (chestCorrectState === 1) {
           if (dagger.size < width) {
-            dagger.size = dagger.size + 10;
+            dagger.size = dagger.size + 50;
             push();
             image(
               dagger.image,
-              width / 2,
-              height / 2,
+              width / 4,
+              height / 3,
               dagger.size,
               dagger.size
             );
@@ -489,8 +498,8 @@ function draw() {
           push();
           image(
             monster.image,
-            width / 3,
-            height / 2,
+            width / 2,
+            height / 3,
             monster.size,
             monster.size
           );
@@ -500,9 +509,20 @@ function draw() {
     } // end of chestGame
     // transtions into sacrificeGame once chestGame is won
     else if (gameState === "sacrificeGame") {
-      background(0);
-      fill(255);
-      text("sacrifice game", width / 2, height / 2);
+      background(tomb, 0, 0);
+      fill(227, 183, 123);
+      textSize(30);
+      textStyle(BOLD);
+      textAlign(CENTER);
+      text("You must sacrifice your brother!", width / 2, height / 4);
+      //both characters on screen
+      image(pan, width / 25, height / 1.8, 200, 200);
+      image(ofeliaBaby, width / 1.75, height / 1.7, 200, 200);
+      //variable for alert
+      let button = createButton("Stab him!");
+      //alert for sacrificeGame
+      button.mousePressed(clickMe);
+
     } //end sacrifice game
 
     // else if(gameState === "kingdomWin") {
@@ -518,21 +538,26 @@ function checkCorrectCollision() {
   //adding a radius to wood chest
   //when key hovers over correct chest (wood) then chestCorrectState
   let d = dist(woodChest.x, woodChest.y, mirrordex, tipY);
-  if (d < 100) {
+  if (d < 70) {
     chestCorrectState = 1;
   }
 } // end checkCorrectCollision
+
 function checkIncorrectCollision() {
   //adding radius to silver and iron chest
   //when hovering over iron or silver chest then chestIncorrectState
   let d = dist(silverChest.x, silverChest.y, mirrordex, tipY);
   let d2 = dist(ironChest.x, ironChest.y, mirrordex, tipY);
-  if (d < 100) {
+  if (d < 70) {
     chestIncorrectState = 1;
-  } else if (d2 < 100) {
+  } else if (d2 < 70) {
     chestIncorrectState = 1;
   }
 } // end checkIncorrectCollision
+
+function clickMe(){
+  window.alert ("Ofelia can not sacrifice her brother! She stabs herself instead.");
+}
 
 //gameOver screen
 function gameOver() {
@@ -544,13 +569,6 @@ function gameOver() {
   text("Game Over!", width / 2, height / 2);
   textSize(30);
   textStyle(ITALIC);
-  text("Click anywhere to try again.", width / 2, (3 * height) / 3.5);
+  text("Press ENTER to try again.", width / 2, (3 * height) / 3.5);
   image(ofeliaBack, width / 2.15, height / 1.75, 70, 70);
 } // end of gameOver
-
-function winScreen() {
-  background(tree, 0, 0);
-  textAlign(CENTER);
-  fill("white");
-  text("win!", width / 2, height / 2);
-} // end of winScreen
